@@ -1706,6 +1706,14 @@
                     "value": "__host__"
                   },
                   {
+                    "type": "PREC",
+                    "value": 10,
+                    "content": {
+                      "type": "STRING",
+                      "value": "__global__"
+                    }
+                  },
+                  {
                     "type": "STRING",
                     "value": "__forceinline__"
                   }
@@ -6062,29 +6070,55 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "PREC",
-          "value": 14,
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "FIELD",
-                "name": "function",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_expression"
-                }
-              },
-              {
-                "type": "FIELD",
-                "name": "arguments",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "argument_list"
-                }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PREC",
+              "value": 14,
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "FIELD",
+                    "name": "function",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_expression"
+                    }
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "arguments",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "argument_list"
+                    }
+                  }
+                ]
               }
-            ]
-          }
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "function",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "primitive_type"
+                  }
+                },
+                {
+                  "type": "FIELD",
+                  "name": "arguments",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "argument_list"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "SEQ",
@@ -6094,8 +6128,12 @@
               "name": "function",
               "content": {
                 "type": "SYMBOL",
-                "name": "primitive_type"
+                "name": "_expression"
               }
+            },
+            {
+              "type": "SYMBOL",
+              "name": "kernel_call_syntax"
             },
             {
               "type": "FIELD",
@@ -10406,6 +10444,44 @@
       },
       "named": true,
       "value": "namespace_identifier"
+    },
+    "kernel_call_syntax": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<<<"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ","
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ">>>"
+        }
+      ]
     }
   },
   "extras": [
@@ -10504,6 +10580,10 @@
     [
       "_declaration_specifiers",
       "_constructor_specifiers"
+    ],
+    [
+      "call_expression",
+      "delete_expression"
     ]
   ],
   "precedences": [],

@@ -1,0 +1,49 @@
+================================================================================
+CUDA functions
+================================================================================
+
+__device__ __host__ int foo() {
+
+}
+
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (function_definition
+    type: (primitive_type)
+    declarator: (function_declarator
+      declarator: (identifier)
+      parameters: (parameter_list))
+    body: (compound_statement)))
+
+================================================================================
+CUDA kernel calls
+================================================================================
+
+int foo() {
+  foo<<<m>>>();
+  foo<<<m, n>>>();
+}
+
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (function_definition
+    type: (primitive_type)
+    declarator: (function_declarator
+      declarator: (identifier)
+      parameters: (parameter_list))
+    body: (compound_statement
+      (expression_statement
+        (call_expression
+          function: (identifier)
+          (kernel_call_syntax
+            (identifier))
+          arguments: (argument_list)))
+      (expression_statement
+        (call_expression
+          function: (identifier)
+          (kernel_call_syntax
+            (identifier)
+            (identifier))
+          arguments: (argument_list))))))
