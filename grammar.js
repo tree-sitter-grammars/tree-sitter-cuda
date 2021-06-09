@@ -33,7 +33,7 @@ module.exports = grammar(CPP, {
             field('arguments', $.argument_list),
         )),
 
-        kernel_call_syntax: $ => seq("<<<", $._expression, optional(seq(",", $._expression)), ">>>"),
+        kernel_call_syntax: $ => seq("<<<", $._expression, repeat(seq(",", $._expression)), ">>>"),
 
         type_qualifier: (_, original) => choice(
             original,
