@@ -13,13 +13,17 @@
     "nan": "^2.14.0"
   },
   "devDependencies": {
-    "tree-sitter-c": "https://github.com/tree-sitter/tree-sitter-c",
-    "tree-sitter-cpp": "https://github.com/theHamsta/tree-sitter-cpp.git",
+    "tree-sitter-c": "git://github.com:tree-sitter/tree-sitter-c#008008e30a81849fca0c79291e2b480855e0e02c",
+    "tree-sitter-cpp": "git://github.com:tree-sitter/tree-sitter-cpp.git#c61212414a3e95b5f7507f98e83de1d638044adc",
     "tree-sitter-cli": "^0.19.5"
   },
   "scripts": {
     "test": "tree-sitter test && tree-sitter parse examples/* --quiet --time",
     "test-windows": "tree-sitter test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/theHamsta/tree-sitter-cuda.git"
   },
   "tree-sitter": [
     {
