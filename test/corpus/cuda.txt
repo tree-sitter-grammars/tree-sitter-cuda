@@ -23,6 +23,7 @@ CUDA kernel calls
 int foo() {
   foo<<<m>>>();
   foo<<<m, n>>>();
+  foo< <<m, n>>>();
 }
 
 --------------------------------------------------------------------------------
@@ -38,6 +39,13 @@ int foo() {
         (call_expression
           function: (identifier)
           (kernel_call_syntax
+            (identifier))
+          arguments: (argument_list)))
+      (expression_statement
+        (call_expression
+          function: (identifier)
+          (kernel_call_syntax
+            (identifier)
             (identifier))
           arguments: (argument_list)))
       (expression_statement

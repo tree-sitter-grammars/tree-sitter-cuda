@@ -33,7 +33,7 @@ module.exports = grammar(CPP, {
             field('arguments', $.argument_list),
         )),
 
-        kernel_call_syntax: $ => seq("<<<", $._expression, repeat(seq(",", $._expression)), ">>>"),
+        kernel_call_syntax: $ => seq(alias(rep3('<'), '<<<'), $._expression, repeat(seq(",", $._expression)), alias(rep3('>'), '>>>')),
 
         type_qualifier: (_, original) => choice(
             original,
@@ -44,3 +44,7 @@ module.exports = grammar(CPP, {
         ),
     }
 });
+
+function rep3(obj) {
+    return token(seq(obj, /\s*/, obj, /\s*/, obj));
+}
