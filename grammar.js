@@ -41,6 +41,7 @@ module.exports = grammar(CPP, {
             '__global__',
             '__local__',
             '__constant__',
+            '__restrict__',
         ),
     }
 });

@@ -3264,6 +3264,10 @@
         {
           "type": "STRING",
           "value": "__constant__"
+        },
+        {
+          "type": "STRING",
+          "value": "__restrict__"
         }
       ]
     },

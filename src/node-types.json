@@ -5371,6 +5371,10 @@
     "named": false
   },
   {
+    "type": "__restrict__",
+    "named": false
+  },
+  {
     "type": "__shared__",
     "named": false
   },
