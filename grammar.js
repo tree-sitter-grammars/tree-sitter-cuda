@@ -14,10 +14,11 @@ module.exports = grammar(CPP, {
     rules: {
         _top_level_item: (_, original) => original,
 
-        function_definition: (_, original) => seq(
+        function_definition: ($, original) => seq(
             seq(
                 repeat(
                     choice(
+                        $.launch_bounds,
                         '__device__',
                         '__host__',
                         prec(10, '__global__'),
@@ -43,6 +44,8 @@ module.exports = grammar(CPP, {
             '__constant__',
             '__restrict__',
         ),
+
+        launch_bounds: $ => seq("__launch_bounds__", "(" , $._expression, ",", $._expression, ")"),
     }
 });
 

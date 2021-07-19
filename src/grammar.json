@@ -1698,6 +1698,10 @@
                 "type": "CHOICE",
                 "members": [
                   {
+                    "type": "SYMBOL",
+                    "name": "launch_bounds"
+                  },
+                  {
                     "type": "STRING",
                     "value": "__device__"
                   },
@@ -10537,6 +10541,35 @@
           },
           "named": false,
           "value": ">>>"
+        }
+      ]
+    },
+    "launch_bounds": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "__launch_bounds__"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "STRING",
+          "value": ","
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     }

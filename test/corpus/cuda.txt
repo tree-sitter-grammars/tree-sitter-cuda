@@ -83,3 +83,32 @@ int foo() {
             (identifier)
             (identifier))
           arguments: (argument_list))))))
+
+================================================================================
+__launch_bounds__
+================================================================================
+__launch_bounds__(MAX(2, 3), MIN(23,XXX))
+__global__ int foo() {
+
+}
+
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (function_definition
+    (launch_bounds
+      (call_expression
+        (identifier)
+        (argument_list
+          (number_literal)
+          (number_literal)))
+      (call_expression
+        (identifier)
+        (argument_list
+          (number_literal)
+          (identifier))))
+    (primitive_type)
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement)))

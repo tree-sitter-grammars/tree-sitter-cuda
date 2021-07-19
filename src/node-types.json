@@ -2351,6 +2351,10 @@
           "named": true
         },
         {
+          "type": "launch_bounds",
+          "named": true
+        },
+        {
           "type": "ms_call_modifier",
           "named": true
         },
@@ -2615,6 +2619,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "launch_bounds",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -5364,6 +5383,10 @@
   },
   {
     "type": "__host__",
+    "named": false
+  },
+  {
+    "type": "__launch_bounds__",
     "named": false
   },
   {
