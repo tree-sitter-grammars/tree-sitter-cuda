@@ -28,6 +28,20 @@ module.exports = grammar(CPP, {
             ), original
         ),
 
+        declaration: ($, original) => seq(
+            seq(
+                repeat(
+                    choice(
+                        $.launch_bounds,
+                        '__device__',
+                        '__host__',
+                        prec(10, '__global__'),
+                        '__forceinline__'
+                    )
+                ),
+            ), original
+        ),
+
         call_expression: ($, original) => choice(original, seq(
             field('function', $._expression),
             $.kernel_call_syntax,
@@ -45,7 +59,7 @@ module.exports = grammar(CPP, {
             '__restrict__',
         ),
 
-        launch_bounds: $ => seq("__launch_bounds__", "(" , $._expression, ",", $._expression, ")"),
+        launch_bounds: $ => seq("__launch_bounds__", "(", $._expression, optional(seq(",", $._expression),), ")"),
     }
 });
 

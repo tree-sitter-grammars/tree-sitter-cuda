@@ -112,3 +112,76 @@ __global__ int foo() {
       (identifier)
       (parameter_list))
     (compound_statement)))
+
+================================================================================
+__launch_bounds__ function declaration
+================================================================================
+void Test2Args(void);
+__launch_bounds__(128, 7) void Test2Args(void);
+__launch_bounds__(128) void Test1Arg(void);
+
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (declaration
+    (primitive_type)
+    (function_declarator
+      (identifier)
+      (parameter_list
+        (parameter_declaration
+          (primitive_type)))))
+  (declaration
+    (launch_bounds
+      (number_literal)
+      (number_literal))
+    (primitive_type)
+    (function_declarator
+      (identifier)
+      (parameter_list
+        (parameter_declaration
+          (primitive_type)))))
+  (declaration
+    (launch_bounds
+      (number_literal))
+    (primitive_type)
+    (function_declarator
+      (identifier)
+      (parameter_list
+        (parameter_declaration
+          (primitive_type))))))
+
+================================================================================
+__launch_bounds__ template
+================================================================================
+
+template <int... Args>
+__launch_bounds__(MAX(2, 3), MIN(23,XXX))
+__global__ int foo() {
+
+}
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (template_declaration
+    (template_parameter_list
+      (variadic_parameter_declaration
+        (primitive_type)
+        (variadic_declarator
+          (identifier))))
+    (function_definition
+      (launch_bounds
+        (call_expression
+          (identifier)
+          (argument_list
+            (number_literal)
+            (number_literal)))
+        (call_expression
+          (identifier)
+          (argument_list
+            (number_literal)
+            (identifier))))
+      (primitive_type)
+      (function_declarator
+        (identifier)
+        (parameter_list))
+      (compound_statement))))
