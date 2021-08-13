@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "tree-sitter-c": "git://github.com/tree-sitter/tree-sitter-c.git#008008e30a81849fca0c79291e2b480855e0e02c",
-    "tree-sitter-cpp": "git://github.com/tree-sitter/tree-sitter-cpp.git#c61212414a3e95b5f7507f98e83de1d638044adc",
+    "tree-sitter-cpp": "git://github.com/tree-sitter/tree-sitter-cpp.git#53afc568b70e4b71ee799501f34c876ad511f56e",
     "tree-sitter-cli": "^0.19.5"
   },
   "scripts": {
