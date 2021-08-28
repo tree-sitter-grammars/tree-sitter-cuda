@@ -3,6 +3,7 @@ on:
   schedule:
     - cron: '0 0 * * *'  # every day at midnight
   push:
+    branches: ["master"]
 jobs:
   build:
     runs-on: ubuntu-latest
