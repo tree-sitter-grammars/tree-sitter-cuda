@@ -15,31 +15,29 @@ module.exports = grammar(CPP, {
         _top_level_item: (_, original) => original,
 
         function_definition: ($, original) => seq(
-            seq(
-                repeat(
-                    choice(
-                        $.launch_bounds,
-                        '__device__',
-                        '__host__',
-                        prec(10, '__global__'),
-                        '__forceinline__'
-                    )
-                ),
-            ), original
+            repeat(
+                choice(
+                    $.launch_bounds,
+                    '__device__',
+                    '__host__',
+                    prec(10, '__global__'),
+                    '__forceinline__'
+                )
+            )
+            , original
         ),
 
         declaration: ($, original) => seq(
-            seq(
-                repeat(
-                    choice(
-                        $.launch_bounds,
-                        '__device__',
-                        '__host__',
-                        prec(10, '__global__'),
-                        '__forceinline__'
-                    )
-                ),
-            ), original
+            repeat(
+                choice(
+                    $.launch_bounds,
+                    '__device__',
+                    '__host__',
+                    prec(10, '__global__'),
+                    '__forceinline__'
+                )
+            )
+            , original
         ),
 
         call_expression: ($, original) => choice(original, seq(
