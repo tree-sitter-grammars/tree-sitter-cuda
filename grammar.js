@@ -6,10 +6,6 @@ module.exports = grammar(CPP, {
     externals: $ => [
         $.raw_string_literal
     ],
-    conflicts: ($, original) => original.concat([
-        [$.call_expression, $.delete_expression]
-    ]),
-
 
     rules: {
         _top_level_item: (_, original) => original,
@@ -39,6 +35,8 @@ module.exports = grammar(CPP, {
             )
             , original
         ),
+        
+        delete_expression: (_,original) => prec.left(original),
 
         call_expression: ($, original) => choice(original, seq(
             field('function', $._expression),
