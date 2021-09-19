@@ -487,6 +487,10 @@
           "named": true
         },
         {
+          "type": "ref_qualifier",
+          "named": true
+        },
+        {
           "type": "throw_specifier",
           "named": true
         },
@@ -2459,6 +2463,10 @@
           "named": true
         },
         {
+          "type": "ref_qualifier",
+          "named": true
+        },
+        {
           "type": "throw_specifier",
           "named": true
         },
@@ -4122,6 +4130,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "ref_qualifier",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "reference_declarator",
