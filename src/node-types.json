@@ -1090,6 +1090,10 @@
       "required": false,
       "types": [
         {
+          "type": "attributed_statement",
+          "named": true
+        },
+        {
           "type": "break_statement",
           "named": true
         },
@@ -2233,6 +2237,10 @@
         {
           "type": "scoped_field_identifier",
           "named": true
+        },
+        {
+          "type": "template_method",
+          "named": true
         }
       ]
     }
@@ -2323,6 +2331,10 @@
         },
         {
           "type": "type_qualifier",
+          "named": true
+        },
+        {
+          "type": "virtual_function_specifier",
           "named": true
         }
       ]
@@ -3149,6 +3161,10 @@
         {
           "type": "type_qualifier",
           "named": true
+        },
+        {
+          "type": "virtual_function_specifier",
+          "named": true
         }
       ]
     }
@@ -3210,6 +3226,10 @@
         },
         {
           "type": "type_qualifier",
+          "named": true
+        },
+        {
+          "type": "virtual_function_specifier",
           "named": true
         }
       ]
@@ -3292,6 +3312,10 @@
         },
         {
           "type": "type_qualifier",
+          "named": true
+        },
+        {
+          "type": "virtual_function_specifier",
           "named": true
         }
       ]
@@ -4711,6 +4735,10 @@
         {
           "type": "type_qualifier",
           "named": true
+        },
+        {
+          "type": "virtual_function_specifier",
+          "named": true
         }
       ]
     }
@@ -5315,6 +5343,10 @@
         },
         {
           "type": "type_qualifier",
+          "named": true
+        },
+        {
+          "type": "virtual_function_specifier",
           "named": true
         }
       ]
