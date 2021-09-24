@@ -206,6 +206,10 @@
       {
         "type": "update_expression",
         "named": true
+      },
+      {
+        "type": "user_defined_literal",
+        "named": true
       }
     ]
   },
@@ -3170,6 +3174,21 @@
     }
   },
   {
+    "type": "operator_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "optional_parameter_declaration",
     "named": true,
     "fields": {
@@ -5259,6 +5278,41 @@
     }
   },
   {
+    "type": "user_defined_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "concatenated_string",
+          "named": true
+        },
+        {
+          "type": "literal_suffix",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "raw_string_literal",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "using_declaration",
     "named": true,
     "fields": {},
@@ -5420,6 +5474,10 @@
     "named": false
   },
   {
+    "type": "\"\"",
+    "named": false
+  },
+  {
     "type": "#define",
     "named": false
   },
@@ -5480,6 +5538,10 @@
     "named": false
   },
   {
+    "type": "()",
+    "named": false
+  },
+  {
     "type": ")",
     "named": false
   },
@@ -5521,6 +5583,10 @@
   },
   {
     "type": "->",
+    "named": false
+  },
+  {
+    "type": "->*",
     "named": false
   },
   {
@@ -5625,6 +5691,10 @@
   },
   {
     "type": "[[",
+    "named": false
+  },
+  {
+    "type": "[]",
     "named": false
   },
   {
@@ -5852,6 +5922,10 @@
     "named": false
   },
   {
+    "type": "literal_suffix",
+    "named": true
+  },
+  {
     "type": "long",
     "named": false
   },
@@ -5902,10 +5976,6 @@
   {
     "type": "operator",
     "named": false
-  },
-  {
-    "type": "operator_name",
-    "named": true
   },
   {
     "type": "override",
