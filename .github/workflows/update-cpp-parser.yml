@@ -21,7 +21,9 @@ jobs:
       - name: Generate parser
         run: npm install
       - name: Run tests
-        run: npm test
+        run: |
+          cp tree-sitter-cpp/test/corpus/* test/corpus
+          npm test
 
       - name: Commit changes
         run: |
