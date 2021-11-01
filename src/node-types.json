@@ -1281,6 +1281,10 @@
       "required": false,
       "types": [
         {
+          "type": "attribute_declaration",
+          "named": true
+        },
+        {
           "type": "base_class_clause",
           "named": true
         },
@@ -1453,6 +1457,10 @@
         },
         {
           "type": "linkage_specification",
+          "named": true
+        },
+        {
+          "type": "namespace_alias_definition",
           "named": true
         },
         {
@@ -1734,6 +1742,10 @@
         },
         {
           "type": "linkage_specification",
+          "named": true
+        },
+        {
+          "type": "namespace_alias_definition",
           "named": true
         },
         {
@@ -2987,6 +2999,36 @@
     "fields": {}
   },
   {
+    "type": "namespace_alias_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "qualified_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "namespace_definition",
     "named": true,
     "fields": {
@@ -3679,6 +3721,10 @@
           "named": true
         },
         {
+          "type": "namespace_alias_definition",
+          "named": true
+        },
+        {
           "type": "namespace_definition",
           "named": true
         },
@@ -3775,6 +3821,10 @@
         },
         {
           "type": "linkage_specification",
+          "named": true
+        },
+        {
+          "type": "namespace_alias_definition",
           "named": true
         },
         {
@@ -3966,6 +4016,10 @@
           "named": true
         },
         {
+          "type": "namespace_alias_definition",
+          "named": true
+        },
+        {
           "type": "namespace_definition",
           "named": true
         },
@@ -4087,6 +4141,10 @@
         },
         {
           "type": "linkage_specification",
+          "named": true
+        },
+        {
+          "type": "namespace_alias_definition",
           "named": true
         },
         {
@@ -4445,6 +4503,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "attribute_declaration",
+          "named": true
+        },
         {
           "type": "base_class_clause",
           "named": true
@@ -4904,6 +4966,10 @@
           "named": true
         },
         {
+          "type": "namespace_alias_definition",
+          "named": true
+        },
+        {
           "type": "namespace_definition",
           "named": true
         },
@@ -5151,6 +5217,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "attribute_declaration",
+          "named": true
+        },
         {
           "type": "base_class_clause",
           "named": true
