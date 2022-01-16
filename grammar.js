@@ -38,11 +38,31 @@ module.exports = grammar(CPP, {
         
         delete_expression: (_,original) => prec.left(original),
 
-        call_expression: ($, original) => choice(original, seq(
+        _expression: ($, original) => choice(
+          original,
+          $.co_await_expression,
+          $.requires_expression,
+          $.requires_clause,
+          $.template_function,
+          $.qualified_identifier,
+          $.new_expression,
+          $.delete_expression,
+          $.lambda_expression,
+          $.parameter_pack_expansion,
+          $.nullptr,
+          $.this,
+          $.raw_string_literal,
+          $.user_defined_literal,
+          alias(prec(10, $.kernel_call_expression), $.call_expression),
+        ),
+
+        kernel_call_expression: ($) => seq(
             field('function', $._expression),
             $.kernel_call_syntax,
             field('arguments', $.argument_list),
-        )),
+        ),
+
+        requires_clause: $ => prec.right(seq('requires', $._expression)),
 
         kernel_call_syntax: $ => seq(alias(rep3('<'), '<<<'), $._expression, repeat(seq(",", $._expression)), alias(rep3('>'), '>>>')),
 
