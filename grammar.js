@@ -2,6 +2,7 @@ const CPP = require("tree-sitter-cpp/grammar")
 
 module.exports = grammar(CPP, {
     name: 'cuda',
+    conflicts: ($, original) => original.concat([[$.call_expression, $.requires_clause]]),
 
     externals: $ => [
         $.raw_string_literal
