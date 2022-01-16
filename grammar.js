@@ -40,19 +40,6 @@ module.exports = grammar(CPP, {
 
         _expression: ($, original) => choice(
           original,
-          $.co_await_expression,
-          $.requires_expression,
-          $.requires_clause,
-          $.template_function,
-          $.qualified_identifier,
-          $.new_expression,
-          $.delete_expression,
-          $.lambda_expression,
-          $.parameter_pack_expansion,
-          $.nullptr,
-          $.this,
-          $.raw_string_literal,
-          $.user_defined_literal,
           alias(prec(10, $.kernel_call_expression), $.call_expression),
         ),
 
