@@ -49,8 +49,6 @@ module.exports = grammar(CPP, {
             field('arguments', $.argument_list),
         ),
 
-        requires_clause: $ => prec.right(seq('requires', $._expression)),
-
         kernel_call_syntax: $ => seq(alias(rep3('<'), '<<<'), $._expression, repeat(seq(",", $._expression)), alias(rep3('>'), '>>>')),
 
         type_qualifier: (_, original) => choice(
