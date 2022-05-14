@@ -58,6 +58,7 @@ module.exports = grammar(CPP, {
             '__local__',
             '__constant__',
             '__restrict__',
+            '__grid_constant__',
         ),
 
         launch_bounds: $ => seq("__launch_bounds__", "(", $._expression, optional(seq(",", $._expression),), ")"),

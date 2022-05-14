@@ -3538,6 +3538,10 @@
         {
           "type": "STRING",
           "value": "__restrict__"
+        },
+        {
+          "type": "STRING",
+          "value": "__grid_constant__"
         }
       ]
     },
