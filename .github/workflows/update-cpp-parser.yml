@@ -25,7 +25,7 @@ jobs:
           git submodule init
           git submodule update
           cp tree-sitter-cpp/test/corpus/* test/corpus
-          npm test
+          node_modules/.bin/tree-sitter test -u
 
       - name: Commit changes
         run: |
