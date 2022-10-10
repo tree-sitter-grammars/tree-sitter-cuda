@@ -178,7 +178,8 @@ struct S {
   S() : f(0) {}
 
  private:
-  int getF() const { return f; }
+  int getF1() const { return f; }
+  int getF2() const try { throw 1; } catch (...) { return f; }
 };
 
 ---
@@ -194,7 +195,14 @@ struct S {
     (function_definition
       (primitive_type)
       (function_declarator (field_identifier) (parameter_list) (type_qualifier))
-      (compound_statement (return_statement (identifier)))))))
+      (compound_statement (return_statement (identifier))))
+    (function_definition
+      (primitive_type)
+      (function_declarator (field_identifier) (parameter_list) (type_qualifier))
+      (try_statement
+        (compound_statement (throw_statement (number_literal)))
+        (catch_clause (parameter_list)
+          (compound_statement (return_statement (identifier)))))))))
 
 =========================================
 Inline method definitions with overrides
@@ -994,10 +1002,12 @@ int main() {
         body: (compound_statement)))))
 
 ==========================
-Constexpr declarations
+Constexpr/constinit/consteval declarations
 ==========================
 
 constexpr double pi = 3.14159;
+consteval int answer();
+constinit int life = answer();
 
 ---
 
@@ -1007,7 +1017,21 @@ constexpr double pi = 3.14159;
     (primitive_type)
     (init_declarator
       (identifier)
-      (number_literal))))
+      (number_literal)))
+  (declaration
+    (type_qualifier)
+    (primitive_type)
+    (function_declarator
+      (identifier)
+      (parameter_list)))
+  (declaration
+    (type_qualifier)
+    (primitive_type)
+    (init_declarator
+      (identifier)
+      (call_expression
+        (identifier)
+        (argument_list)))))
 
 ============================
 Variadic templates
@@ -1396,3 +1420,45 @@ void C::f() & noexcept {}
       (ref_qualifier)
       (noexcept))
     (compound_statement)))
+
+=========================
+Default comparison declarations
+=========================
+
+struct A {
+    auto operator<=>(A const &) = default;
+    friend auto operator<=>(A const &, A const &) = default;
+};
+
+---
+
+(translation_unit
+  (struct_specifier
+    (type_identifier)
+    (field_declaration_list
+      (function_definition
+        (placeholder_type_specifier (auto))
+        (function_declarator
+          (operator_name)
+          (parameter_list
+            (parameter_declaration
+              (type_identifier)
+              (type_qualifier)
+              (abstract_reference_declarator))))
+        (default_method_clause))
+      (friend_declaration
+        (declaration
+          (placeholder_type_specifier (auto))
+          (init_declarator
+            (function_declarator
+              (operator_name)
+              (parameter_list
+                (parameter_declaration
+                  (type_identifier)
+                  (type_qualifier)
+                  (abstract_reference_declarator))
+                (parameter_declaration
+                  (type_identifier)
+                  (type_qualifier)
+                  (abstract_reference_declarator))))
+            (identifier)))))))

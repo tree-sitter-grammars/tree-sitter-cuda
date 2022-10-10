@@ -24,8 +24,9 @@ jobs:
         run: |
           git submodule init
           git submodule update
+          cd tree-sitter-cpp && git checkout origin/master
           cp tree-sitter-cpp/test/corpus/* test/corpus
-          node_modules/.bin/tree-sitter test -u
+          node_modules/.bin/tree-sitter test
 
       - name: Commit changes
         run: |
