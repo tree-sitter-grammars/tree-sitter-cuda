@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-cuda",
-  "version": "0.20.1",
+  "version": "0.20.2",
   "description": "CUDA grammar for tree-sitter",
   "main": "bindings/node",
   "keywords": [
@@ -10,7 +10,7 @@
   "author": "Stephan Seitz",
   "license": "MIT",
   "dependencies": {
-    "nan": "^2.15.0"
+    "nan": "^2.17.0"
   },
   "devDependencies": {
     "tree-sitter-c": "^0.20.0",
