@@ -3,10 +3,6 @@ const CPP = require("tree-sitter-cpp/grammar")
 module.exports = grammar(CPP, {
     name: 'cuda',
 
-    externals: $ => [
-        $.raw_string_literal
-    ],
-
     rules: {
         _top_level_item: (_, original) => original,
 
