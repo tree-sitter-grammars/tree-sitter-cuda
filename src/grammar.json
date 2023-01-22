@@ -3780,7 +3780,7 @@
       }
     },
     "enum_specifier": {
-      "type": "PREC_LEFT",
+      "type": "PREC_RIGHT",
       "value": 0,
       "content": {
         "type": "SEQ",
@@ -7985,43 +7985,47 @@
       }
     },
     "placeholder_type_specifier": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "constraint",
-          "content": {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "constraint",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_type_specifier"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          },
+          {
             "type": "CHOICE",
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_type_specifier"
+                "name": "auto"
               },
               {
-                "type": "BLANK"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "decltype_auto"
+                },
+                "named": true,
+                "value": "decltype"
               }
             ]
           }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "auto"
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "decltype_auto"
-              },
-              "named": true,
-              "value": "decltype"
-            }
-          ]
-        }
-      ]
+        ]
+      }
     },
     "auto": {
       "type": "STRING",
@@ -10101,6 +10105,18 @@
             "type": "SYMBOL",
             "name": "_type_identifier"
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "attribute_declaration"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -12386,6 +12402,10 @@
                     {
                       "type": "SYMBOL",
                       "name": "template_type"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "decltype"
                     },
                     {
                       "type": "ALIAS",

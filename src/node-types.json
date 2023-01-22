@@ -614,6 +614,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_declaration",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4843,6 +4853,10 @@
         "multiple": false,
         "required": false,
         "types": [
+          {
+            "type": "decltype",
+            "named": true
+          },
           {
             "type": "dependent_name",
             "named": true
