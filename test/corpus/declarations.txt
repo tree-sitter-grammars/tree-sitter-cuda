@@ -87,6 +87,7 @@ template <typename T>
 using a = typename b<T>::c;
 
 using foobar [[deprecated]] = int;
+using foobar [[deprecated]] [[maybe_unused]] = int;
 
 ---
 
@@ -118,6 +119,11 @@ using foobar [[deprecated]] = int;
             (type_identifier))))))
   (alias_declaration
     (type_identifier)
+    (attribute_declaration (attribute (identifier)))
+    (type_descriptor (primitive_type)))
+  (alias_declaration
+    (type_identifier)
+    (attribute_declaration (attribute (identifier)))
     (attribute_declaration (attribute (identifier)))
     (type_descriptor (primitive_type))))
 
@@ -222,7 +228,9 @@ struct B : A {
   int bar() const override { return 4; }
   int baz() const final { return 5; }
   int bag() const final override { return 6; }
-  int bah() const override final { return 7; }
+  int bah() const override final;
+  auto bai() const -> int override { return 7; }
+  auto baj() const -> int override;
 };
 
 ---
@@ -249,10 +257,17 @@ struct B : A {
       (primitive_type)
       (function_declarator (field_identifier) (parameter_list) (type_qualifier) (virtual_specifier) (virtual_specifier))
       (compound_statement (return_statement (number_literal))))
-    (function_definition
+    (field_declaration
       (primitive_type)
-      (function_declarator (field_identifier) (parameter_list) (type_qualifier) (virtual_specifier) (virtual_specifier))
-      (compound_statement (return_statement (number_literal)))))))
+      (function_declarator (field_identifier) (parameter_list) (type_qualifier) (virtual_specifier) (virtual_specifier)))
+    (function_definition
+      (placeholder_type_specifier (auto))
+      (function_declarator (field_identifier) (parameter_list) (type_qualifier) (trailing_return_type (type_descriptor (primitive_type))) (virtual_specifier))
+      (compound_statement (return_statement (number_literal))))
+    (field_declaration
+      (placeholder_type_specifier (auto))
+      (function_declarator (field_identifier) (parameter_list) (type_qualifier) (trailing_return_type (type_descriptor (primitive_type))) (virtual_specifier))))))
+
 
 =====================================
 Virtual method declarations
@@ -274,31 +289,31 @@ class A {
     (type_identifier)
     (field_declaration_list
       (declaration
-        (virtual_function_specifier)
+        (virtual)
         (function_declarator (destructor_name (identifier)) (parameter_list)))
       (field_declaration
         (primitive_type)
         (function_declarator (field_identifier) (parameter_list)))
       (function_definition
-        (virtual_function_specifier)
+        (virtual)
         (primitive_type)
         (function_declarator
           (field_identifier)
           (parameter_list))
         (compound_statement))
       (field_declaration
-        (virtual_function_specifier)
+        (virtual)
         (primitive_type)
         (function_declarator
           (field_identifier)
           (parameter_list)))
       (field_declaration
         (storage_class_specifier)
-        (virtual_function_specifier)
+        (virtual)
         (primitive_type)
         (function_declarator (field_identifier) (parameter_list) (virtual_specifier)))
       (field_declaration
-        (virtual_function_specifier)
+        (virtual)
         (storage_class_specifier)
         (primitive_type)
         (function_declarator (field_identifier) (parameter_list) (virtual_specifier))))))
@@ -342,7 +357,7 @@ class C {
       (field_initializer_list
         (field_initializer
           (qualified_identifier
-            (namespace_identifier) 
+            (namespace_identifier)
             (template_method
               (field_identifier)
               (template_argument_list (type_descriptor (type_identifier)))))
@@ -354,23 +369,45 @@ class C {
 Classes with inheritance
 =========================================
 
-class A : public B {
-};
-
-class C : C::D, public E {
-};
+class A : public B {};
+class C : C::D, public E {};
+class F : [[deprecated]] public G {};
+class H : public virtual I {};
+class J : virtual protected I {};
 
 ---
 
 (translation_unit
   (class_specifier
     (type_identifier)
-    (base_class_clause (type_identifier))
+    (base_class_clause (access_specifier) (type_identifier))
     (field_declaration_list))
   (class_specifier
     (type_identifier)
     (base_class_clause
       (qualified_identifier (namespace_identifier) (type_identifier))
+      (access_specifier)
+      (type_identifier))
+    (field_declaration_list))
+  (class_specifier
+    (type_identifier)
+    (base_class_clause
+      (attribute_declaration (attribute (identifier)))
+      (access_specifier)
+      (type_identifier))
+    (field_declaration_list))
+  (class_specifier
+    (type_identifier)
+    (base_class_clause
+      (access_specifier)
+      (virtual)
+      (type_identifier))
+    (field_declaration_list))
+  (class_specifier
+    (type_identifier)
+    (base_class_clause
+      (virtual)
+      (access_specifier)
       (type_identifier))
     (field_declaration_list)))
 
@@ -391,7 +428,9 @@ struct D final {};
   (class_specifier
     (type_identifier)
     (virtual_specifier)
-    (base_class_clause (type_identifier))
+    (base_class_clause
+      (access_specifier)
+      (type_identifier))
     (field_declaration_list))
   (class_specifier
     (type_identifier)
@@ -420,7 +459,14 @@ class A {
   (class_specifier (type_identifier) (field_declaration_list
     (access_specifier)
     (field_declaration
-      (class_specifier (type_identifier) (base_class_clause (type_identifier) (type_identifier)) (field_declaration_list)))
+      (class_specifier
+        (type_identifier)
+        (base_class_clause
+          (access_specifier)
+          (type_identifier)
+          (access_specifier)
+          (type_identifier))
+        (field_declaration_list)))
     (field_declaration
       (type_identifier) (field_identifier) (field_identifier)))))
 
@@ -504,6 +550,9 @@ class [[gnu::visibility("default")]] A {};
 struct [[gnu::visibility("default")]] A {};
 union [[gnu::visibility("default")]] A {};
 
+class [[gnu::visibility("default")]] [[deprecated]] A {};
+class A final : [[deprecated]] public B {};
+
 ---
 
 (translation_unit
@@ -541,7 +590,20 @@ union [[gnu::visibility("default")]] A {};
   (union_specifier
     (attribute_declaration (attribute (identifier) (identifier) (argument_list (string_literal))))
     (type_identifier)
-    (field_declaration_list)))
+    (field_declaration_list))
+  (class_specifier
+    (attribute_declaration (attribute (identifier) (identifier) (argument_list (string_literal))))
+    (attribute_declaration (attribute (identifier)))
+    (type_identifier)
+    (field_declaration_list))
+  (class_specifier
+    (type_identifier)
+    (virtual_specifier)
+    (base_class_clause
+      (attribute_declaration (attribute (identifier)))
+      (access_specifier)
+      (type_identifier))
+      (field_declaration_list)))
 
 =========================================
 Operator overload declarations
@@ -1227,7 +1289,7 @@ operator T*();
       (placeholder_type_specifier (auto))
       (abstract_function_declarator (parameter_list) (type_qualifier))))
   (declaration
-    (virtual_function_specifier)
+    (virtual)
     (operator_cast (type_identifier) (abstract_function_declarator (parameter_list))) (number_literal))
   (declaration
     (qualified_identifier
@@ -1289,7 +1351,7 @@ class A {
         (placeholder_type_specifier (auto))
         (abstract_function_declarator (parameter_list) (type_qualifier))))
     (declaration
-      (virtual_function_specifier)
+      (virtual)
       (operator_cast (type_identifier) (abstract_function_declarator (parameter_list))) (number_literal))
     (declaration
       (qualified_identifier
