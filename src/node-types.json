@@ -2408,6 +2408,10 @@
           "named": true
         },
         {
+          "type": "launch_bounds",
+          "named": true
+        },
+        {
           "type": "ms_declspec_modifier",
           "named": true
         },
@@ -2847,6 +2851,10 @@
         },
         {
           "type": "attribute_specifier",
+          "named": true
+        },
+        {
+          "type": "launch_bounds",
           "named": true
         },
         {
@@ -3758,6 +3766,10 @@
           "named": true
         },
         {
+          "type": "launch_bounds",
+          "named": true
+        },
+        {
           "type": "ms_declspec_modifier",
           "named": true
         },
@@ -3836,6 +3848,10 @@
         },
         {
           "type": "attribute_specifier",
+          "named": true
+        },
+        {
+          "type": "launch_bounds",
           "named": true
         },
         {
@@ -3922,6 +3938,10 @@
         },
         {
           "type": "attribute_specifier",
+          "named": true
+        },
+        {
+          "type": "launch_bounds",
           "named": true
         },
         {
@@ -5465,6 +5485,10 @@
           "named": true
         },
         {
+          "type": "launch_bounds",
+          "named": true
+        },
+        {
           "type": "ms_declspec_modifier",
           "named": true
         },
@@ -6133,6 +6157,10 @@
         },
         {
           "type": "attribute_specifier",
+          "named": true
+        },
+        {
+          "type": "launch_bounds",
           "named": true
         },
         {

@@ -185,3 +185,52 @@ __global__ int foo() {
         (identifier)
         (parameter_list))
       (compound_statement))))
+
+================================================================================
+template inline
+================================================================================
+inline __device__ void vec_set(int &a, V b) { a = b; }
+template<typename V> inline __device__ void vec_set(int &a, V b) { a = b; }
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (function_definition
+    (storage_class_specifier)
+    (primitive_type)
+    (function_declarator
+      (identifier)
+      (parameter_list
+        (parameter_declaration
+          (primitive_type)
+          (reference_declarator
+            (identifier)))
+        (parameter_declaration
+          (type_identifier)
+          (identifier))))
+    (compound_statement
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (identifier)))))
+  (template_declaration
+    (template_parameter_list
+      (type_parameter_declaration
+        (type_identifier)))
+    (function_definition
+      (storage_class_specifier)
+      (primitive_type)
+      (function_declarator
+        (identifier)
+        (parameter_list
+          (parameter_declaration
+            (primitive_type)
+            (reference_declarator
+              (identifier)))
+          (parameter_declaration
+            (type_identifier)
+            (identifier))))
+      (compound_statement
+        (expression_statement
+          (assignment_expression
+            (identifier)
+            (identifier)))))))

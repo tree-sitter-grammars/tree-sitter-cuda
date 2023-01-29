@@ -1702,82 +1702,45 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "REPEAT",
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "ms_call_modifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_declaration_specifiers"
+        },
+        {
+          "type": "FIELD",
+          "name": "declarator",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_declarator"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
           "content": {
             "type": "CHOICE",
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "launch_bounds"
+                "name": "compound_statement"
               },
               {
-                "type": "STRING",
-                "value": "__device__"
-              },
-              {
-                "type": "STRING",
-                "value": "__host__"
-              },
-              {
-                "type": "PREC",
-                "value": 10,
-                "content": {
-                  "type": "STRING",
-                  "value": "__global__"
-                }
-              },
-              {
-                "type": "STRING",
-                "value": "__forceinline__"
+                "type": "SYMBOL",
+                "name": "try_statement"
               }
             ]
           }
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "ms_call_modifier"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_declaration_specifiers"
-            },
-            {
-              "type": "FIELD",
-              "name": "declarator",
-              "content": {
-                "type": "SYMBOL",
-                "name": "_declarator"
-              }
-            },
-            {
-              "type": "FIELD",
-              "name": "body",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "compound_statement"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "try_statement"
-                  }
-                ]
-              }
-            }
-          ]
         }
       ]
     },
@@ -1785,100 +1748,63 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "launch_bounds"
-              },
-              {
-                "type": "STRING",
-                "value": "__device__"
-              },
-              {
-                "type": "STRING",
-                "value": "__host__"
-              },
-              {
-                "type": "PREC",
-                "value": 10,
-                "content": {
-                  "type": "STRING",
-                  "value": "__global__"
-                }
-              },
-              {
-                "type": "STRING",
-                "value": "__forceinline__"
-              }
-            ]
-          }
+          "type": "SYMBOL",
+          "name": "_declaration_specifiers"
         },
         {
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "_declaration_specifiers"
+              "type": "FIELD",
+              "name": "declarator",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_declarator"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "init_declarator"
+                  }
+                ]
+              }
             },
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "FIELD",
-                  "name": "declarator",
-                  "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "_declarator"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "init_declarator"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": ","
-                      },
-                      {
-                        "type": "FIELD",
-                        "name": "declarator",
-                        "content": {
-                          "type": "CHOICE",
-                          "members": [
-                            {
-                              "type": "SYMBOL",
-                              "name": "_declarator"
-                            },
-                            {
-                              "type": "SYMBOL",
-                              "name": "init_declarator"
-                            }
-                          ]
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "declarator",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "_declarator"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "init_declarator"
                         }
-                      }
-                    ]
+                      ]
+                    }
                   }
-                }
-              ]
-            },
-            {
-              "type": "STRING",
-              "value": ";"
+                ]
+              }
             }
           ]
+        },
+        {
+          "type": "STRING",
+          "value": ";"
         }
       ]
     },
@@ -1947,33 +1873,62 @@
       "type": "CHOICE",
       "members": [
         {
+          "type": "SYMBOL",
+          "name": "launch_bounds"
+        },
+        {
+          "type": "STRING",
+          "value": "__device__"
+        },
+        {
+          "type": "STRING",
+          "value": "__host__"
+        },
+        {
+          "type": "PREC",
+          "value": 10,
+          "content": {
+            "type": "STRING",
+            "value": "__global__"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "__forceinline__"
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "storage_class_specifier"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "storage_class_specifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "type_qualifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "attribute_specifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "attribute_declaration"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "ms_declspec_modifier"
+                }
+              ]
             },
             {
               "type": "SYMBOL",
-              "name": "type_qualifier"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "attribute_specifier"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "attribute_declaration"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "ms_declspec_modifier"
+              "name": "virtual"
             }
           ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "virtual"
         }
       ]
     },

@@ -6,37 +6,21 @@ module.exports = grammar(CPP, {
     rules: {
         _top_level_item: (_, original) => original,
 
-        function_definition: ($, original) => seq(
-            repeat(
-                choice(
-                    $.launch_bounds,
-                    '__device__',
-                    '__host__',
-                    prec(10, '__global__'),
-                    '__forceinline__'
-                )
-            )
-            , original
-        ),
+        _declaration_modifiers: ($, original) =>
+            choice(
+                $.launch_bounds,
+                '__device__',
+                '__host__',
+                prec(10, '__global__'),
+                '__forceinline__',
+                original
+            ),
 
-        declaration: ($, original) => seq(
-            repeat(
-                choice(
-                    $.launch_bounds,
-                    '__device__',
-                    '__host__',
-                    prec(10, '__global__'),
-                    '__forceinline__'
-                )
-            )
-            , original
-        ),
-        
-        delete_expression: (_,original) => prec.left(original),
+        delete_expression: (_, original) => prec.left(original),
 
         _expression: ($, original) => choice(
-          original,
-          alias(prec(10, $.kernel_call_expression), $.call_expression),
+            original,
+            alias(prec(10, $.kernel_call_expression), $.call_expression),
         ),
 
         kernel_call_expression: ($) => seq(
