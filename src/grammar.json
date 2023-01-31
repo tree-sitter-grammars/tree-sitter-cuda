@@ -1897,6 +1897,10 @@
           "value": "__forceinline__"
         },
         {
+          "type": "STRING",
+          "value": "__noinline__"
+        },
+        {
           "type": "CHOICE",
           "members": [
             {

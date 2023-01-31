@@ -13,6 +13,7 @@ module.exports = grammar(CPP, {
                 '__host__',
                 prec(10, '__global__'),
                 '__forceinline__',
+                '__noinline__',
                 original
             ),
 
