@@ -6570,6 +6570,10 @@
     "named": false
   },
   {
+    "type": "__noinline__",
+    "named": false
+  },
+  {
     "type": "__restrict__",
     "named": false
   },
