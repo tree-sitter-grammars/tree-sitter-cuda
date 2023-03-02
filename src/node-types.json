@@ -1787,6 +1787,10 @@
           {
             "type": "&&",
             "named": false
+          },
+          {
+            "type": "and",
+            "named": false
           }
         ]
       },
@@ -1868,6 +1872,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "or",
+            "named": false
+          },
           {
             "type": "||",
             "named": false
