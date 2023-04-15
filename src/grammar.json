@@ -8131,6 +8131,10 @@
               "name": "concept_definition"
             },
             {
+              "type": "SYMBOL",
+              "name": "friend_declaration"
+            },
+            {
               "type": "ALIAS",
               "content": {
                 "type": "SYMBOL",
