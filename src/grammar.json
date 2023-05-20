@@ -4958,12 +4958,20 @@
             "value": "?"
           },
           {
-            "type": "FIELD",
-            "name": "consequence",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
-            }
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "consequence",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           },
           {
             "type": "STRING",
@@ -7457,7 +7465,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z_]\\w*"
+      "value": "(\\p{XID_Start}|_)\\p{XID_Continue}*"
     },
     "_type_identifier": {
       "type": "ALIAS",
@@ -7546,7 +7554,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "(\\\\(.|\\r?\\n)|[^\\\\\\n])*"
+                "value": "(\\\\+(.|\\r?\\n)|[^\\\\\\n])*"
               }
             ]
           },
