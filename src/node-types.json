@@ -136,6 +136,10 @@
         "named": true
       },
       {
+        "type": "generic_expression",
+        "named": true
+      },
+      {
         "type": "identifier",
         "named": true
       },
@@ -3178,6 +3182,25 @@
         },
         {
           "type": "virtual",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "generic_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        },
+        {
+          "type": "type_descriptor",
           "named": true
         }
       ]
@@ -6547,6 +6570,14 @@
   },
   {
     "type": "_Atomic",
+    "named": false
+  },
+  {
+    "type": "_Generic",
+    "named": false
+  },
+  {
+    "type": "_Noreturn",
     "named": false
   },
   {
