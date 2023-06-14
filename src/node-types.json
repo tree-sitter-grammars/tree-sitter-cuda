@@ -164,6 +164,10 @@
         "named": true
       },
       {
+        "type": "offsetof_expression",
+        "named": true
+      },
+      {
         "type": "parameter_pack_expansion",
         "named": true
       },
@@ -3784,6 +3788,32 @@
     }
   },
   {
+    "type": "offsetof_expression",
+    "named": true,
+    "fields": {
+      "member": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "field_identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_descriptor",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "operator_cast",
     "named": true,
     "fields": {
@@ -6883,6 +6913,10 @@
   {
     "type": "number_literal",
     "named": true
+  },
+  {
+    "type": "offsetof",
+    "named": false
   },
   {
     "type": "operator",
