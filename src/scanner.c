@@ -14,8 +14,6 @@ typedef struct {
 
 static inline void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
 
-static inline void skip(TSLexer *lexer) { lexer->advance(lexer, true); }
-
 static inline void reset(Scanner *scanner) {
     scanner->delimiter_length = 0;
     memset(scanner->delimiter, 0, sizeof(scanner->delimiter));
@@ -118,14 +116,14 @@ void *tree_sitter_cuda_external_scanner_create() {
 }
 
 bool tree_sitter_cuda_external_scanner_scan(void *payload, TSLexer *lexer,
-                                            const bool *valid_symbols) {
+                                           const bool *valid_symbols) {
     Scanner *scanner = (Scanner *)payload;
 
     return scan(scanner, lexer, valid_symbols);
 }
 
 unsigned tree_sitter_cuda_external_scanner_serialize(void *payload,
-                                                     char *buffer) {
+                                                    char *buffer) {
     assert(RAW_STRING_DELIMITER_MAX * sizeof(wchar_t) <
                TREE_SITTER_SERIALIZATION_BUFFER_SIZE &&
            "Serialized delimiter is too long!");
@@ -136,8 +134,8 @@ unsigned tree_sitter_cuda_external_scanner_serialize(void *payload,
 }
 
 void tree_sitter_cuda_external_scanner_deserialize(void *payload,
-                                                   const char *buffer,
-                                                   unsigned length) {
+                                                  const char *buffer,
+                                                  unsigned length) {
     assert(length % sizeof(wchar_t) == 0 &&
            "Can't decode serialized delimiter!");
 
