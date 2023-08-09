@@ -6493,6 +6493,10 @@
       "required": false,
       "types": [
         {
+          "type": "attribute_specifier",
+          "named": true
+        },
+        {
           "type": "type_qualifier",
           "named": true
         }
@@ -7243,7 +7247,15 @@
     "named": false
   },
   {
+    "type": "__extension__",
+    "named": false
+  },
+  {
     "type": "__fastcall",
+    "named": false
+  },
+  {
+    "type": "__forceinline",
     "named": false
   },
   {
@@ -7260,6 +7272,14 @@
   },
   {
     "type": "__host__",
+    "named": false
+  },
+  {
+    "type": "__inline",
+    "named": false
+  },
+  {
+    "type": "__inline__",
     "named": false
   },
   {
