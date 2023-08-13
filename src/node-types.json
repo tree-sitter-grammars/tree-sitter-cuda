@@ -527,6 +527,10 @@
           "named": true
         },
         {
+          "type": "gnu_asm_expression",
+          "named": true
+        },
+        {
           "type": "noexcept",
           "named": true
         },
@@ -702,6 +706,10 @@
           "named": true
         },
         {
+          "type": "compound_statement",
+          "named": true
+        },
+        {
           "type": "initializer_list",
           "named": true
         },
@@ -794,6 +802,10 @@
           },
           {
             "type": "subscript_expression",
+            "named": true
+          },
+          {
+            "type": "user_defined_literal",
             "named": true
           }
         ]
@@ -1707,6 +1719,10 @@
       "required": true,
       "types": [
         {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "raw_string_literal",
           "named": true
         },
@@ -2377,6 +2393,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_specifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2469,7 +2495,7 @@
         ]
       },
       "default_value": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -3150,6 +3176,10 @@
         },
         {
           "type": "attribute_specifier",
+          "named": true
+        },
+        {
+          "type": "gnu_asm_expression",
           "named": true
         },
         {
@@ -4387,11 +4417,19 @@
       "required": false,
       "types": [
         {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "optional_parameter_declaration",
           "named": true
         },
         {
           "type": "parameter_declaration",
+          "named": true
+        },
+        {
+          "type": "variadic_parameter",
           "named": true
         },
         {
@@ -5417,7 +5455,7 @@
     "named": true,
     "fields": {
       "name": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
@@ -5451,6 +5489,10 @@
           {
             "type": "qualified_identifier",
             "named": true
+          },
+          {
+            "type": "template",
+            "named": false
           },
           {
             "type": "template_function",
@@ -6815,6 +6857,11 @@
     }
   },
   {
+    "type": "variadic_parameter",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "variadic_parameter_declaration",
     "named": true,
     "fields": {
@@ -7222,6 +7269,10 @@
     "named": false
   },
   {
+    "type": "_Alignof",
+    "named": false
+  },
+  {
     "type": "_Atomic",
     "named": false
   },
@@ -7231,6 +7282,14 @@
   },
   {
     "type": "_Noreturn",
+    "named": false
+  },
+  {
+    "type": "__alignof",
+    "named": false
+  },
+  {
+    "type": "__alignof__",
     "named": false
   },
   {
@@ -7339,6 +7398,10 @@
   },
   {
     "type": "__vectorcall",
+    "named": false
+  },
+  {
+    "type": "_alignof",
     "named": false
   },
   {
