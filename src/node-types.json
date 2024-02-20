@@ -574,11 +574,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "_abstract_declarator",
+          "named": true
+        },
+        {
+          "type": "ms_call_modifier",
           "named": true
         }
       ]
@@ -603,6 +607,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "ms_pointer_modifier",
+          "named": true
+        },
         {
           "type": "type_qualifier",
           "named": true
@@ -785,35 +793,7 @@
         "required": true,
         "types": [
           {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "field_expression",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "parenthesized_expression",
-            "named": true
-          },
-          {
-            "type": "pointer_expression",
-            "named": true
-          },
-          {
-            "type": "qualified_identifier",
-            "named": true
-          },
-          {
-            "type": "subscript_expression",
-            "named": true
-          },
-          {
-            "type": "user_defined_literal",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -1410,7 +1390,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -1839,6 +1819,10 @@
         "types": [
           {
             "type": "_expression",
+            "named": true
+          },
+          {
+            "type": "comma_expression",
             "named": true
           }
         ]
@@ -2368,6 +2352,10 @@
         "required": false,
         "types": [
           {
+            "type": "primitive_type",
+            "named": true
+          },
+          {
             "type": "qualified_identifier",
             "named": true
           },
@@ -2457,6 +2445,18 @@
       "types": [
         {
           "type": "enumerator",
+          "named": true
+        },
+        {
+          "type": "preproc_call",
+          "named": true
+        },
+        {
+          "type": "preproc_if",
+          "named": true
+        },
+        {
+          "type": "preproc_ifdef",
           "named": true
         }
       ]
@@ -2692,6 +2692,10 @@
           },
           {
             "type": "field_identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_identifier",
             "named": true
           },
           {
@@ -3367,6 +3371,10 @@
         "required": false,
         "types": [
           {
+            "type": "concatenated_string",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           }
@@ -3718,7 +3726,15 @@
             "named": true
           },
           {
+            "type": "field_identifier",
+            "named": true
+          },
+          {
             "type": "subscript_designator",
+            "named": true
+          },
+          {
+            "type": "subscript_range_designator",
             "named": true
           }
         ]
@@ -4267,6 +4283,10 @@
           {
             "type": "_declarator",
             "named": true
+          },
+          {
+            "type": "abstract_reference_declarator",
+            "named": true
           }
         ]
       },
@@ -4480,7 +4500,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -4493,6 +4513,10 @@
         },
         {
           "type": "_type_declarator",
+          "named": true
+        },
+        {
+          "type": "ms_call_modifier",
           "named": true
         }
       ]
@@ -4810,6 +4834,10 @@
           "named": true
         },
         {
+          "type": "enumerator",
+          "named": true
+        },
+        {
           "type": "field_declaration",
           "named": true
         },
@@ -4922,6 +4950,10 @@
           "named": true
         },
         {
+          "type": "access_specifier",
+          "named": true
+        },
+        {
           "type": "alias_declaration",
           "named": true
         },
@@ -4931,6 +4963,18 @@
         },
         {
           "type": "declaration",
+          "named": true
+        },
+        {
+          "type": "enumerator",
+          "named": true
+        },
+        {
+          "type": "field_declaration",
+          "named": true
+        },
+        {
+          "type": "friend_declaration",
           "named": true
         },
         {
@@ -5026,6 +5070,10 @@
         },
         {
           "type": "declaration",
+          "named": true
+        },
+        {
+          "type": "enumerator",
           "named": true
         },
         {
@@ -5221,6 +5269,10 @@
           "named": true
         },
         {
+          "type": "enumerator",
+          "named": true
+        },
+        {
           "type": "field_declaration",
           "named": true
         },
@@ -5350,6 +5402,10 @@
         },
         {
           "type": "declaration",
+          "named": true
+        },
+        {
+          "type": "enumerator",
           "named": true
         },
         {
@@ -6055,6 +6111,32 @@
         "types": [
           {
             "type": "subscript_argument_list",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "subscript_range_designator",
+    "named": true,
+    "fields": {
+      "end": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      },
+      "start": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
             "named": true
           }
         ]
