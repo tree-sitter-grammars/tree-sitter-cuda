@@ -38,6 +38,7 @@ module.exports = grammar(CPP, {
             '__global__',
             '__local__',
             '__constant__',
+            '__managed__',
             '__grid_constant__',
         ),
 

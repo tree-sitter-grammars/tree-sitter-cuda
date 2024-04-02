@@ -4774,6 +4774,10 @@
         },
         {
           "type": "STRING",
+          "value": "__managed__"
+        },
+        {
+          "type": "STRING",
           "value": "__grid_constant__"
         }
       ]
