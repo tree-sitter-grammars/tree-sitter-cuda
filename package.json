@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-cuda",
-  "version": "0.20.3",
+  "version": "0.20.4",
   "description": "CUDA grammar for tree-sitter",
   "main": "bindings/node",
   "types": "bindings/node",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "tree-sitter-c": "git://github.com/tree-sitter/tree-sitter-c.git",
     "tree-sitter-cpp": "git://github.com/tree-sitter/tree-sitter-cpp.git",
-    "tree-sitter-cli": "^0.20.8",
+    "tree-sitter-cli": "^0.22.2",
     "prebuildify": "^6.0.0"
   },
   "scripts": {
