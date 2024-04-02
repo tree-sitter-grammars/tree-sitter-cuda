@@ -3,23 +3,44 @@
   "version": "0.20.3",
   "description": "CUDA grammar for tree-sitter",
   "main": "bindings/node",
+  "types": "bindings/node",
   "keywords": [
     "parser",
     "c++"
   ],
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**"
+  ],
   "author": "Stephan Seitz",
   "license": "MIT",
   "dependencies": {
-    "nan": "^2.17.0"
+    "node-addon-api": "^7.1.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.21.0"
+  },
+  "peerDependenciesMeta": {
+    "tree_sitter": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "tree-sitter-c": "git://github.com/tree-sitter/tree-sitter-c.git",
     "tree-sitter-cpp": "git://github.com/tree-sitter/tree-sitter-cpp.git",
-    "tree-sitter-cli": "^0.20.8"
+    "tree-sitter-cli": "^0.20.8",
+    "prebuildify": "^6.0.0"
   },
   "scripts": {
     "test": "tree-sitter test && tree-sitter parse examples/* --quiet --time",
-    "test-windows": "tree-sitter test"
+    "test-windows": "tree-sitter test",
+    "install": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip"
   },
   "repository": {
     "type": "git",
