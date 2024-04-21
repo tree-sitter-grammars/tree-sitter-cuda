@@ -398,6 +398,10 @@
         "named": true
       },
       {
+        "type": "reference_declarator",
+        "named": true
+      },
+      {
         "type": "type_identifier",
         "named": true
       }
@@ -3325,6 +3329,10 @@
           "named": true
         },
         {
+          "type": "pure_virtual_clause",
+          "named": true
+        },
+        {
           "type": "storage_class_specifier",
           "named": true
         },
@@ -4050,6 +4058,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_declaration",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -5535,6 +5553,11 @@
     }
   },
   {
+    "type": "pure_virtual_clause",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "qualified_identifier",
     "named": true,
     "fields": {
@@ -5669,6 +5692,10 @@
         },
         {
           "type": "_field_declarator",
+          "named": true
+        },
+        {
+          "type": "_type_declarator",
           "named": true
         },
         {
@@ -7325,6 +7352,10 @@
   },
   {
     "type": "/=",
+    "named": false
+  },
+  {
+    "type": "0",
     "named": false
   },
   {
