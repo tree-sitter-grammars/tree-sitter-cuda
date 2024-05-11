@@ -1,4 +1,7 @@
 {
+  "0": "c",
+  "1": "p",
+  "2": "p",
   "name": "cuda",
   "word": "identifier",
   "rules": {
