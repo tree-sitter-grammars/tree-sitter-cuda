@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tree-sitter-cuda"
 description = "Cuda grammar for tree-sitter"
-version = "0.20.4"
+version = "0.20.5"
 keywords = ["incremental", "parsing", "tree-sitter", "cuda"]
 classifiers = [
   "Intended Audience :: Developers",

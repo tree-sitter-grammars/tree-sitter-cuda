@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-cuda",
-  "version": "0.20.4",
+  "version": "0.20.5",
   "description": "CUDA grammar for tree-sitter",
   "main": "bindings/node",
   "types": "bindings/node",
