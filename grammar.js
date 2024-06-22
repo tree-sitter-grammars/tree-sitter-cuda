@@ -19,18 +19,18 @@ module.exports = grammar(CPP, {
 
         delete_expression: (_, original) => prec.left(original),
 
-        _expression: ($, original) => choice(
+        expression: ($, original) => choice(
             original,
             alias(prec(10, $.kernel_call_expression), $.call_expression),
         ),
 
         kernel_call_expression: ($) => seq(
-            field('function', $._expression),
+            field('function', $.expression),
             $.kernel_call_syntax,
             field('arguments', $.argument_list),
         ),
 
-        kernel_call_syntax: $ => seq(alias(rep3('<'), '<<<'), $._expression, repeat(seq(",", $._expression)), alias(rep3('>'), '>>>')),
+        kernel_call_syntax: $ => seq(alias(rep3('<'), '<<<'), $.expression, repeat(seq(",", $.expression)), alias(rep3('>'), '>>>')),
 
         type_qualifier: (_, original) => choice(
             original,
@@ -42,7 +42,7 @@ module.exports = grammar(CPP, {
             '__grid_constant__',
         ),
 
-        launch_bounds: $ => seq("__launch_bounds__", "(", $._expression, optional(seq(",", $._expression),), ")"),
+        launch_bounds: $ => seq("__launch_bounds__", "(", $.expression, optional(seq(",", $.expression),), ")"),
     }
 });
 
