@@ -4863,6 +4863,10 @@
                   "value": "noreturn"
                 },
                 {
+                  "type": "STRING",
+                  "value": "_Nonnull"
+                },
+                {
                   "type": "SYMBOL",
                   "name": "alignas_qualifier"
                 }
@@ -8864,6 +8868,10 @@
               {
                 "type": "STRING",
                 "value": "__asm__"
+              },
+              {
+                "type": "STRING",
+                "value": "__asm"
               }
             ]
           },
