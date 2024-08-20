@@ -44,7 +44,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/theHamsta/tree-sitter-cuda.git"
+    "url": "git://github.com/tree-sitter-grammars/tree-sitter-cuda.git"
   },
   "tree-sitter": [
     {
@@ -54,8 +54,6 @@
         "cuh"
       ],
       "highlights": [
-        "queries/highlights.scm",
-        "node_modules/tree-sitter-c/queries/highlights.scm"
       ]
     }
   ]
