@@ -1,8 +1,6 @@
 {
-  "0": "c",
-  "1": "p",
-  "2": "p",
   "name": "cuda",
+  "inherits": "cpp",
   "word": "identifier",
   "rules": {
     "translation_unit": {
