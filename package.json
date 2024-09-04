@@ -31,8 +31,8 @@
     }
   },
   "devDependencies": {
-    "tree-sitter-c": "git://github.com/tree-sitter/tree-sitter-c.git",
-    "tree-sitter-cpp": "git://github.com/tree-sitter/tree-sitter-cpp.git",
+    "tree-sitter-c": "0.23.0",
+    "tree-sitter-cpp": "0.23.0",
     "tree-sitter-cli": "^0.22.2",
     "prebuildify": "^6.0.0"
   },
