@@ -24,11 +24,11 @@ module.exports = grammar(CPP, {
             alias(prec(10, $.kernel_call_expression), $.call_expression),
         ),
 
-        kernel_call_expression: ($) => seq(
+        kernel_call_expression: ($) => prec(1,seq(
             field('function', $.expression),
             $.kernel_call_syntax,
             field('arguments', $.argument_list),
-        ),
+        )),
 
         kernel_call_syntax: $ => seq(alias(rep3('<'), '<<<'), $.expression, repeat(seq(",", $.expression)), alias(rep3('>'), '>>>')),
 
