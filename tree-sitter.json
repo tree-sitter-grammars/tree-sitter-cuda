@@ -1,0 +1,40 @@
+{
+  "grammars": [
+    {
+      "name": "cuda",
+      "camelcase": "Cuda",
+      "scope": "source.cpp",
+      "path": ".",
+      "file-types": [
+        "cu",
+        "cuh"
+      ],
+      "highlights": [
+        "queries/highlights.scm",
+        "node_modules/tree-sitter-c/queries/highlights.scm",
+        "node_modules/tree-sitter-cpp/queries/highlights.scm"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "0.20.6",
+    "license": "MIT",
+    "description": "CUDA grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Stephan Seitz"
+      }
+    ],
+    "links": {
+      "repository": "git://github.com/tree-sitter-grammars/tree-sitter-cuda.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}
