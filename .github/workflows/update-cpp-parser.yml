@@ -17,10 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          cache: npm
-          node-version: ${{vars.NODE_VERSION}}
+      - name: Set up tree-sitter
+        uses: tree-sitter/setup-action/cli@v2
       - uses: tree-sitter/parser-update-action@v1.1
         with:
           parent-name: cpp
