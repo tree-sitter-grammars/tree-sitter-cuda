@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-cuda",
-  "version": "0.20.6",
+  "version": "0.20.7",
   "description": "CUDA grammar for tree-sitter",
   "main": "bindings/node",
   "types": "bindings/node",
@@ -21,14 +21,6 @@
   "dependencies": {
     "node-addon-api": "^7.1.0",
     "node-gyp-build": "^4.8.0"
-  },
-  "peerDependencies": {
-    "tree-sitter": "0.24.7"
-  },
-  "peerDependenciesMeta": {
-    "tree_sitter": {
-      "optional": true
-    }
   },
   "devDependencies": {
     "tree-sitter-c": "0.23.4",
