@@ -1,4 +1,4 @@
-VERSION := 0.20.6
+VERSION := 0.20.7
 
 LANGUAGE_NAME := tree-sitter-cuda
 
