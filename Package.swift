@@ -1,57 +1,40 @@
 // swift-tools-version:5.3
+
+import Foundation
 import PackageDescription
 
+var sources = ["src/parser.c"]
+if FileManager.default.fileExists(atPath: "src/scanner.c") {
+    sources.append("src/scanner.c")
+}
+
 let package = Package(
-    name: "TreeSitterCuda",
-    platforms: [.macOS(.v10_13), .iOS(.v11)],
+    name: "TreeSitterCUDA",
     products: [
-        .library(name: "TreeSitterCuda", targets: ["TreeSitterCuda"]),
+        .library(name: "TreeSitterCUDA", targets: ["TreeSitterCUDA"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/ChimeHQ/SwiftTreeSitter", from: "0.8.0"),
+        .package(name: "SwiftTreeSitter", url: "https://github.com/tree-sitter/swift-tree-sitter", from: "0.9.0"),
     ],
     targets: [
-        .target(name: "TreeSitterCuda",
-                path: ".",
-                exclude: [
-                    "Cargo.toml",
-                    "Makefile",
-                    "binding.gyp",
-                    "bindings/c",
-                    "bindings/go",
-                    "bindings/node",
-                    "bindings/python",
-                    "bindings/rust",
-                    "prebuilds",
-                    "grammar.js",
-                    "package.json",
-                    "package-lock.json",
-                    "pyproject.toml",
-                    "setup.py",
-                    "test",
-                    "examples",
-                    ".editorconfig",
-                    ".github",
-                    ".gitignore",
-                    ".gitattributes",
-                    ".gitmodules",
-                ],
-                sources: [
-                    "src/parser.c",
-                    "src/scanner.c",
-                ],
-                resources: [
-                    .copy("queries")
-                ],
-                publicHeadersPath: "bindings/swift",
-                cSettings: [.headerSearchPath("src")]),
-         .testTarget(
-                name: "TreeSitterCudaTests",
-                dependencies: [
-                    "SwiftTreeSitter",
-                    "TreeSitterCuda",
-                ],
-                path: "bindings/swift/TreeSitterCudaTests"
+        .target(
+            name: "TreeSitterCUDA",
+            dependencies: [],
+            path: ".",
+            sources: sources,
+            resources: [
+                .copy("queries")
+            ],
+            publicHeadersPath: "bindings/swift",
+            cSettings: [.headerSearchPath("src")]
+        ),
+        .testTarget(
+            name: "TreeSitterCUDATests",
+            dependencies: [
+                "SwiftTreeSitter",
+                "TreeSitterCUDA",
+            ],
+            path: "bindings/swift/TreeSitterCUDATests"
         )
     ],
     cLanguageStandard: .c11
