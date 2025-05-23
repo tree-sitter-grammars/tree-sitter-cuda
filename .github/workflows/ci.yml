@@ -4,26 +4,102 @@ on:
   push:
     branches: [master]
     paths:
+      - grammar.js
+      - src/**
+      - test/**
+      - bindings/**
+      - binding.gyp
+      - examples/*
   pull_request:
+    paths:
+      - grammar.js
+      - src/**
+      - test/**
+      - bindings/**
+      - binding.gyp
+      - examples/*
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
 
 jobs:
-  build:
-    name: Run tests
-    runs-on: ubuntu-latest
+  test:
+    name: Test parser
+    runs-on: ${{matrix.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-      - uses: actions/checkout@v4
-      - uses: tree-sitter/setup-action@v1
-        with:
-          install-lib: false
-      - name: Run tests
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up tree-sitter
+        uses: tree-sitter/setup-action/cli@v2
+      - name: Run parser and binding tests
         uses: tree-sitter/parser-test-action@v2
         with:
+          generate: false
           test-rust: true
-          test-node: true
-          test-python: true
-          test-go: true
-          test-swift: true
-      - name: Parse examples
-        uses: tree-sitter/parse-action@v4
+      - name: Clone CUDA samples
+        uses: actions/checkout@v4
         with:
-          files: examples/*
+          path: examples/cuda-samples
+          repository: NVIDIA/cuda-samples
+          ref: 8a9e2c830c8a336b4f48c79e5ed5837031eb8551
+          sparse-checkout: Samples/
+      - name: Parse sample files
+        uses: tree-sitter/parse-action@v4
+        id: parse-files
+        with:
+          files: |-
+            examples/**/*.cu
+            examples/**/*.cuh
+          # ignore files with macro errors
+          invalid-files: |-
+            examples/cuda-samples/Samples/0_Introduction/simpleCallback/simpleCallback.cu
+            examples/cuda-samples/Samples/0_Introduction/simpleStreams/simpleStreams.cu
+            examples/cuda-samples/Samples/0_Introduction/simpleZeroCopy/simpleZeroCopy.cu
+            examples/cuda-samples/Samples/2_Concepts_and_Techniques/FunctionPointers/FunctionPointers_kernels.cu
+            examples/cuda-samples/Samples/2_Concepts_and_Techniques/MC_EstimatePiInlineP/src/piestimator.cu
+            examples/cuda-samples/Samples/2_Concepts_and_Techniques/MC_EstimatePiInlineQ/src/piestimator.cu
+            examples/cuda-samples/Samples/2_Concepts_and_Techniques/MC_EstimatePiP/src/piestimator.cu
+            examples/cuda-samples/Samples/2_Concepts_and_Techniques/MC_EstimatePiQ/src/piestimator.cu
+            examples/cuda-samples/Samples/2_Concepts_and_Techniques/MC_SingleAsianOptionP/src/pricingengine.cu
+            examples/cuda-samples/Samples/2_Concepts_and_Techniques/dct8x8/dct8x8_kernel_short.cuh
+            examples/cuda-samples/Samples/3_CUDA_Features/newdelete/newdelete.cu
+            examples/cuda-samples/Samples/3_CUDA_Features/simpleCudaGraphs/simpleCudaGraphs.cu
+            examples/cuda-samples/Samples/4_CUDA_Libraries/conjugateGradientMultiDeviceCG/conjugateGradientMultiDeviceCG.cu
+            examples/cuda-samples/Samples/5_Domain_Specific/HSOpticalFlow/flowCUDA.cu
+            examples/cuda-samples/Samples/5_Domain_Specific/SobelFilter/SobelFilter_kernels.cu
+            examples/cuda-samples/Samples/5_Domain_Specific/convolutionFFT2D/convolutionFFT2D.cu
+            examples/cuda-samples/Samples/5_Domain_Specific/convolutionFFT2D/convolutionFFT2D.cuh
+            examples/cuda-samples/Samples/5_Domain_Specific/postProcessGL/postProcessGL.cu
+            examples/cuda-samples/Samples/5_Domain_Specific/vulkanImageCUDA/vulkanImageCUDA.cu
+            examples/cuda-samples/Samples/6_Performance/alignedTypes/alignedTypes.cu
+            examples/cuda-samples/Samples/8_Platform_Specific/Tegra/EGLSync_CUDAEvent_Interop/EGLSync_CUDAEvent_Interop.cu
+      - name: Upload failures artifact
+        uses: actions/upload-artifact@v4
+        if: "!cancelled() && steps.parse-files.outcome == 'failure'"
+        with:
+          name: failures-${{runner.os}}
+          path: ${{steps.parse-files.outputs.failures}}
+  fuzz:
+    name: Fuzz scanner
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Check for scanner changes
+        id: scanner-check
+        run: |-
+          if git diff --quiet HEAD^ -- src/scanner.c; then
+            printf 'changed=false\n' >> "$GITHUB_OUTPUT"
+          else
+            printf 'changed=true\n' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Run the fuzzer
+        uses: tree-sitter/fuzz-action@v4
+        if: steps.scanner-check.outputs.changed == 'true'

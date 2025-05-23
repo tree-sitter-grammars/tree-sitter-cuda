@@ -5,6 +5,14 @@ on:
     tags: ["*"]
 
 jobs:
+  release:
+    uses: tree-sitter/workflows/.github/workflows/release.yml@main
+    with:
+      attestations: true
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
   npm:
     uses: tree-sitter/workflows/.github/workflows/package-npm.yml@main
     secrets:
