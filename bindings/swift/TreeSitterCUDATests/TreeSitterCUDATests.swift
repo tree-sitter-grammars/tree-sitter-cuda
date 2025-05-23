@@ -1,8 +1,8 @@
 import XCTest
 import SwiftTreeSitter
-import TreeSitterCuda
+import TreeSitterCUDA
 
-final class TreeSitterCudaTests: XCTestCase {
+final class TreeSitterCUDATests: XCTestCase {
     func testCanLoadGrammar() throws {
         let parser = Parser()
         let language = Language(language: tree_sitter_cuda())
