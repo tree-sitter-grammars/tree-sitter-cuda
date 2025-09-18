@@ -4,7 +4,7 @@ endif
 
 LANGUAGE_NAME := tree-sitter-cuda
 HOMEPAGE_URL := https://github.com/tree-sitter-grammars/tree-sitter-cuda
-VERSION := 0.21.0
+VERSION := 0.21.1
 
 # repository
 SRC_DIR := src

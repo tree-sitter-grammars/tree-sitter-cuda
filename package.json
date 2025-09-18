@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-cuda",
-  "version": "0.21.0",
+  "version": "0.21.1",
   "description": "CUDA grammar for tree-sitter",
   "repository": "https://github.com/tree-sitter-grammars/tree-sitter-cuda",
   "license": "MIT",
