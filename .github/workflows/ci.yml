@@ -79,7 +79,7 @@ jobs:
             examples/cuda-samples/Samples/6_Performance/alignedTypes/alignedTypes.cu
             examples/cuda-samples/Samples/8_Platform_Specific/Tegra/EGLSync_CUDAEvent_Interop/EGLSync_CUDAEvent_Interop.cu
       - name: Upload failures artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: "!cancelled() && steps.parse-files.outcome == 'failure'"
         with:
           name: failures-${{runner.os}}
