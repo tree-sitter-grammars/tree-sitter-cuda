@@ -33,7 +33,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Set up tree-sitter
         uses: tree-sitter/setup-action/cli@v2
       - name: Run parser and binding tests
@@ -42,7 +42,7 @@ jobs:
           generate: false
           test-rust: true
       - name: Clone CUDA samples
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: examples/cuda-samples
           repository: NVIDIA/cuda-samples
@@ -79,7 +79,7 @@ jobs:
             examples/cuda-samples/Samples/6_Performance/alignedTypes/alignedTypes.cu
             examples/cuda-samples/Samples/8_Platform_Specific/Tegra/EGLSync_CUDAEvent_Interop/EGLSync_CUDAEvent_Interop.cu
       - name: Upload failures artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: "!cancelled() && steps.parse-files.outcome == 'failure'"
         with:
           name: failures-${{runner.os}}
@@ -89,7 +89,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 2
       - name: Check for scanner changes
