@@ -1,0 +1,62 @@
+// CUDA grammar for tree-sitter (native DSL).
+// Extends tree-sitter-cpp.
+
+let cpp = inherit("../tree-sitter-cpp/grammar.tsg")
+
+macro rep3(s: rule_t) rule_t { token(seq(s, regexp(r"\s*"), s, regexp(r"\s*"), s)) }
+
+grammar {
+    language: "cuda",
+    inherits: cpp,
+}
+
+// `_top_level_item: (_, original) => original` is a no-op passthrough; omit.
+
+override rule _declaration_modifiers {
+    choice(
+        launch_bounds,
+        "__device__",
+        "__host__",
+        prec(10, "__global__"),
+        "__forceinline__",
+        "__noinline__",
+        cpp::_declaration_modifiers,
+    )
+}
+
+override rule delete_expression { prec_left(0, cpp::delete_expression) }
+
+override rule expression {
+    choice(
+        cpp::expression,
+        alias(prec(10, kernel_call_expression), call_expression),
+    )
+}
+
+rule kernel_call_expression {
+    prec(1, seq(
+        field(function, expression),
+        kernel_call_syntax,
+        field(arguments, argument_list),
+    ))
+}
+
+rule kernel_call_syntax {
+    seq(alias(rep3("<"), "<<<"), expression, repeat(seq(",", expression)), alias(rep3(">"), ">>>"))
+}
+
+override rule type_qualifier {
+    choice(
+        cpp::type_qualifier,
+        "__shared__",
+        "__global__",
+        "__local__",
+        "__constant__",
+        "__managed__",
+        "__grid_constant__",
+    )
+}
+
+rule launch_bounds {
+    seq("__launch_bounds__", "(", expression, optional(seq(",", expression)), ")")
+}
