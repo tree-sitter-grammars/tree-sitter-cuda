@@ -305,7 +305,7 @@ auto i = [] <typename T> requires Hashable<T> {
       (lambda_expression
         (lambda_capture_specifier
           (lambda_default_capture))
-        (abstract_function_declarator
+        (lambda_declarator
           (parameter_list
             (parameter_declaration
               (primitive_type)
@@ -325,7 +325,7 @@ auto i = [] <typename T> requires Hashable<T> {
         (lambda_capture_specifier
           (identifier)
           (identifier))
-        (abstract_function_declarator
+        (lambda_declarator
           (parameter_list
             (parameter_declaration
               (primitive_type)
@@ -353,7 +353,7 @@ auto i = [] <typename T> requires Hashable<T> {
         (template_parameter_list
           (type_parameter_declaration
             (type_identifier)))
-        (abstract_function_declarator
+        (lambda_declarator
           (parameter_list))
         (compound_statement
           (return_statement
