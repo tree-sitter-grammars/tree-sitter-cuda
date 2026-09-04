@@ -9,9 +9,9 @@ module.exports = grammar(CPP, {
         _declaration_modifiers: ($, original) =>
             choice(
                 $.launch_bounds,
-                '__device__',
                 '__host__',
-                prec(10, '__global__'),
+                prec(10, choice('__device__', '__tile__')),
+                prec(10, choice('__global__', '__tile_global__')),
                 '__forceinline__',
                 '__noinline__',
                 original
@@ -37,6 +37,8 @@ module.exports = grammar(CPP, {
             '__shared__',
             '__global__',
             '__local__',
+            '__device__',
+            '__tile__',
             '__constant__',
             '__managed__',
             '__grid_constant__',

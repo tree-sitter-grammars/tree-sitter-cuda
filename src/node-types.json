@@ -8469,6 +8469,14 @@
     "named": false
   },
   {
+    "type": "__tile__",
+    "named": false
+  },
+  {
+    "type": "__tile_global__",
+    "named": false
+  },
+  {
     "type": "__try",
     "named": false
   },
