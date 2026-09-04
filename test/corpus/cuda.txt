@@ -234,3 +234,62 @@ template<typename V> inline __device__ void vec_set(int &a, V b) { a = b; }
           (assignment_expression
             (identifier)
             (identifier)))))))
+
+================================================================================
+device var
+================================================================================
+__device__ int x_device = 0;
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (declaration
+    (primitive_type)
+    (init_declarator
+      (identifier)
+      (number_literal))))
+
+================================================================================
+tileir
+================================================================================
+__device__ int x_device = 0;
+__tile__   int x_tile = 0;
+
+
+__tile__ void tile() {}
+__tile__ __device__ void tile_device() {}
+__tile_global__ void tile_function(int* in) {}
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (declaration
+    (primitive_type)
+    (init_declarator
+      (identifier)
+      (number_literal)))
+  (declaration
+    (primitive_type)
+    (init_declarator
+      (identifier)
+      (number_literal)))
+  (function_definition
+    (primitive_type)
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement))
+  (function_definition
+    (primitive_type)
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement))
+  (function_definition
+    (primitive_type)
+    (function_declarator
+      (identifier)
+      (parameter_list
+        (parameter_declaration
+          (primitive_type)
+          (pointer_declarator
+            (identifier)))))
+    (compound_statement)))

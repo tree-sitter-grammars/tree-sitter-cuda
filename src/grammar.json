@@ -3261,18 +3261,40 @@
         },
         {
           "type": "STRING",
-          "value": "__device__"
-        },
-        {
-          "type": "STRING",
           "value": "__host__"
         },
         {
           "type": "PREC",
           "value": 10,
           "content": {
-            "type": "STRING",
-            "value": "__global__"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "__device__"
+              },
+              {
+                "type": "STRING",
+                "value": "__tile__"
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC",
+          "value": 10,
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "__global__"
+              },
+              {
+                "type": "STRING",
+                "value": "__tile_global__"
+              }
+            ]
           }
         },
         {
@@ -5047,6 +5069,14 @@
         {
           "type": "STRING",
           "value": "__local__"
+        },
+        {
+          "type": "STRING",
+          "value": "__device__"
+        },
+        {
+          "type": "STRING",
+          "value": "__tile__"
         },
         {
           "type": "STRING",

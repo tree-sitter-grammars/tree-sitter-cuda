@@ -10,4 +10,6 @@ this_is_not a_comment;
 
 (translation_unit
   (comment)
-  (declaration (type_identifier) (identifier)))
+  (declaration
+    (type_identifier)
+    (identifier)))

@@ -14,16 +14,22 @@ int a = std::get<0>(t);
     (init_declarator
       (identifier)
       (binary_expression
-        (binary_expression (identifier) (identifier))
+        (binary_expression
+          (identifier)
+          (identifier))
         (identifier))))
   (declaration
     (type_identifier)
     (init_declarator
       (identifier)
       (call_expression
-        (template_function (identifier) (template_argument_list
-          (type_descriptor (type_identifier))))
-        (argument_list (identifier)))))
+        (template_function
+          (identifier)
+          (template_argument_list
+            (type_descriptor
+              (type_identifier))))
+        (argument_list
+          (identifier)))))
   (declaration
     (primitive_type)
     (init_declarator
@@ -33,8 +39,10 @@ int a = std::get<0>(t);
           (namespace_identifier)
           (template_function
             (identifier)
-            (template_argument_list (number_literal))))
-        (argument_list (identifier))))))
+            (template_argument_list
+              (number_literal))))
+        (argument_list
+          (identifier))))))
 
 =================================================
 function declarations vs variable initializations
@@ -56,26 +64,39 @@ T6 i{j};
     (type_identifier)
     (function_declarator
       (identifier)
-      (parameter_list (parameter_declaration (type_identifier) (pointer_declarator (identifier))))))
+      (parameter_list
+        (parameter_declaration
+          (type_identifier)
+          (pointer_declarator
+            (identifier))))))
   (declaration
     (type_identifier)
     (function_declarator
       (identifier)
       (parameter_list
-        (parameter_declaration (type_identifier) (reference_declarator (identifier)))
-        (parameter_declaration (type_identifier) (reference_declarator (identifier))))))
-
+        (parameter_declaration
+          (type_identifier)
+          (reference_declarator
+            (identifier)))
+        (parameter_declaration
+          (type_identifier)
+          (reference_declarator
+            (identifier))))))
   (comment)
   (declaration
     (type_identifier)
     (init_declarator
       (identifier)
-      (argument_list (field_expression (identifier) (field_identifier)))))
+      (argument_list
+        (field_expression
+          (identifier)
+          (field_identifier)))))
   (declaration
     (type_identifier)
     (init_declarator
       (identifier)
-      (initializer_list (identifier)))))
+      (initializer_list
+        (identifier)))))
 
 ================================================
 template classes vs relational expressions
@@ -88,15 +109,26 @@ int main() {
 
 ---
 
-(translation_unit (function_definition
-  (primitive_type)
-  (function_declarator (identifier) (parameter_list))
-  (compound_statement
-    (declaration
-      (template_type (type_identifier)
-        (template_argument_list (type_descriptor (type_identifier))))
-      (identifier))
-    (declaration
-      (template_type (type_identifier)
-        (template_argument_list (type_descriptor (type_identifier))))
-      (init_declarator (identifier) (identifier))))))
+(translation_unit
+  (function_definition
+    (primitive_type)
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (declaration
+        (template_type
+          (type_identifier)
+          (template_argument_list
+            (type_descriptor
+              (type_identifier))))
+        (identifier))
+      (declaration
+        (template_type
+          (type_identifier)
+          (template_argument_list
+            (type_descriptor
+              (type_identifier))))
+        (init_declarator
+          (identifier)
+          (identifier))))))

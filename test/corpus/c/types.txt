@@ -24,21 +24,51 @@ ssize_t a;
 ---
 
 (translation_unit
-  (declaration (primitive_type) (identifier))
-  (declaration (primitive_type) (identifier))
-  (declaration (primitive_type) (identifier))
-  (declaration (primitive_type) (identifier))
-  (declaration (primitive_type) (identifier))
-  (declaration (primitive_type) (identifier))
-  (declaration (primitive_type) (identifier))
-  (declaration (primitive_type) (identifier))
-  (declaration (primitive_type) (identifier))
-  (declaration (primitive_type) (identifier))
-  (declaration (primitive_type) (identifier))
-  (declaration (primitive_type) (identifier))
-  (declaration (primitive_type) (identifier))
-  (declaration (primitive_type) (identifier))
-  (declaration (primitive_type) (identifier)))
+  (declaration
+    (primitive_type)
+    (identifier))
+  (declaration
+    (primitive_type)
+    (identifier))
+  (declaration
+    (primitive_type)
+    (identifier))
+  (declaration
+    (primitive_type)
+    (identifier))
+  (declaration
+    (primitive_type)
+    (identifier))
+  (declaration
+    (primitive_type)
+    (identifier))
+  (declaration
+    (primitive_type)
+    (identifier))
+  (declaration
+    (primitive_type)
+    (identifier))
+  (declaration
+    (primitive_type)
+    (identifier))
+  (declaration
+    (primitive_type)
+    (identifier))
+  (declaration
+    (primitive_type)
+    (identifier))
+  (declaration
+    (primitive_type)
+    (identifier))
+  (declaration
+    (primitive_type)
+    (identifier))
+  (declaration
+    (primitive_type)
+    (identifier))
+  (declaration
+    (primitive_type)
+    (identifier)))
 
 ========================================
 Type modifiers
@@ -57,24 +87,38 @@ void f(unsigned long v2);
     (primitive_type)
     (function_declarator
       (identifier)
-      (parameter_list (parameter_declaration (sized_type_specifier)))))
+      (parameter_list
+        (parameter_declaration
+          (sized_type_specifier)))))
   (declaration
     (primitive_type)
     (function_declarator
       (identifier)
-      (parameter_list (parameter_declaration (sized_type_specifier (primitive_type))))))
+      (parameter_list
+        (parameter_declaration
+          (sized_type_specifier
+            (primitive_type))))))
   (declaration
     (primitive_type)
     (function_declarator
       (identifier)
-      (parameter_list (parameter_declaration (sized_type_specifier (primitive_type))))))
+      (parameter_list
+        (parameter_declaration
+          (sized_type_specifier
+            (primitive_type))))))
   (declaration
     (primitive_type)
     (function_declarator
       (identifier)
-      (parameter_list (parameter_declaration (sized_type_specifier) (identifier)))))
+      (parameter_list
+        (parameter_declaration
+          (sized_type_specifier)
+          (identifier)))))
   (declaration
     (primitive_type)
     (function_declarator
       (identifier)
-      (parameter_list (parameter_declaration (sized_type_specifier) (identifier))))))
+      (parameter_list
+        (parameter_declaration
+          (sized_type_specifier)
+          (identifier))))))
