@@ -15,9 +15,9 @@ grammar {
 override rule _declaration_modifiers {
     choice(
         launch_bounds,
-        "__device__",
         "__host__",
-        prec(10, "__global__"),
+        prec(10, choice("__device__", "__tile__")),
+        prec(10, choice("__global__", "__tile_global__")),
         "__forceinline__",
         "__noinline__",
         cpp::_declaration_modifiers,
@@ -51,6 +51,8 @@ override rule type_qualifier {
         "__shared__",
         "__global__",
         "__local__",
+        "__device__",
+        "__tile__",
         "__constant__",
         "__managed__",
         "__grid_constant__",
