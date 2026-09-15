@@ -19,7 +19,7 @@
     }
   ],
   "metadata": {
-    "version": "0.21.1",
+    "version": "0.21.2",
     "license": "MIT",
     "description": "CUDA grammar for tree-sitter",
     "authors": [
