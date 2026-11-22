@@ -49,7 +49,7 @@ jobs:
           ref: 8a9e2c830c8a336b4f48c79e5ed5837031eb8551
           sparse-checkout: Samples/
       - name: Parse sample files
-        uses: tree-sitter/parse-action@v4
+        uses: tree-sitter/parse-action@v5
         id: parse-files
         with:
           files: |-
